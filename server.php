@@ -31,12 +31,11 @@ foreach ( $adminips as $allowed ) {
 if ($isadmin != true) {
 	echo '<div class="alert-message error" data-alert="alert" style="margin-right: 20px;"><a class="close" onclick="\$().alert()" href="#">&times</a><p>Access Denied.</p></div>';
 } else {
-	
 	echo '
             <div style="margin-right: 20px;">
-            <h3>Litecoind statistics</h3>
+            <h3>*coind statistics</h3>
             <table class=\'zebra-striped\'>
-            <tr><td>Server balance total: </td><td>' . $derp ['balance'] . ' LTC</td></tr>
+            <tr><td>Server balance total: </td><td>' . number_format($derp['balance'], 8) . ' ' . $coin . '</td></tr>
             <tr><td>Server wallets created: </td><td>' . $count ['wallets'] . '</td></tr>
             <tr><td>Server block count: </td><td>' . $derp ['blocks'] . '</td></tr>
             <tr><td>Server connections: </td><td>' . $derp ['connections'] . '</td></tr>
@@ -62,11 +61,11 @@ if ($isadmin != true) {
             <br><br>
             <center><h3>All Recent transactions</h3></center>
 
-            <table class=\'bordered-table condensed-table zebra-striped\'><tr><td>Confirms</td><td>Address</td><td>Amount</td><td>Fee</td><td>Transaction ID</td></tr>';
+            <table class=\'table table-bordered table-condensed table-striped\'><tr><td>Confirms</td><td>Address</td><td>Amount</td><td>Fee</td><td>Transaction ID</td></tr>';
 	$dump = array_reverse ( $btclient->listtransactions () );
 	
 	foreach ( $dump as $herp ) {
-		echo "<tr><td>" . $herp ['confirmations'] . "</td><td><input type='text' value='" . $herp ['address'] . "' /></td><td>" . $herp ['amount'] . "</td><td>" . ($herp ['fee'] ? $herp ["fee"] : 0) . "</td><td><input type='text' value='" . $herp ['txid'] . "' /></td></tr>";
+		echo "<tr><td>" . $herp ['confirmations'] . "</td><td><input type='text' value='" . $herp ['address'] . "' /></td><td>" . number_format($herp['amount'], 8) . "</td><td>" . ($herp ['fee'] ? $herp ["fee"] : 0) . "</td><td><input type='text' value='" . $herp ['txid'] . "' /></td></tr>";
 	}
 	echo "</table>";
 		
