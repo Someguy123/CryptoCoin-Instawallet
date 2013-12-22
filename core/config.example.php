@@ -46,5 +46,5 @@ $adminips = array(
 // NOT IMPLEMENTED YET ...
 $minfee   = 0;                          // min. hard fee on all transactions
 $feeperc  = 2.5;                        // fee for outgoing transactions in percentage
-$fee_account = "lal";  					// set to your own KEY to recieve fee´s there
+$fee_account = "lal";  					// set to your own KEY to recieve fees there
 ?>
