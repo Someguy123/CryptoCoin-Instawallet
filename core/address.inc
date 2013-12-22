@@ -112,7 +112,7 @@ class Address
     $stmt->execute(array($key));
     $fetch = $stmt->fetchall();
     if($fetch[0]['has_pass'] == 1) { 
-      if($fetch[0]['pass'] == password_hash($pass)) {
+      if($fetch[0]['pass'] == hash('sha512', $pass)) {
         return true;
       } else {
         return false;
@@ -140,15 +140,15 @@ class Address
       throw new Exception("TOO_LONG");
       return false;
     }
-    if($this->haspass($key) === true AND $this->checkPass($key, password_hash($oldpass)) === true) {
+    if($this->haspass($key) === true AND $this->checkPass($key, $oldpass) === true) {
       // They have a password, and they told us their old password correctly
       $stmt = $this->PDO_Conn->prepare("UPDATE instaltc SET `pass`=? WHERE `url`=?");
-      $stmt->execute(array(password_hash($pass), $key));
+      $stmt->execute(array(hash('sha512', $pass), $key));
       return true;
     } elseif($this->hasPass($key) === false) {
       // They don't have a password anyway
       $stmt = $this->PDO_Conn->prepare("UPDATE instaltc SET `pass`=?, `has_pass`=1 WHERE `url`=?");
-      $stmt->execute(array(password_hash($pass), $key));
+      $stmt->execute(array(hash('sha512', $pass), $key));
       return true;
     } else {
       // They didn't match either of those, so they probably entered their
