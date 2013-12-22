@@ -1,4 +1,7 @@
 <?
+//Site name
+$sitename = "",
+
 // Donation account
 $don_account = "WalletDonations";
 
