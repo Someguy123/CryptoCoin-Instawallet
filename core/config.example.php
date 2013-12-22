@@ -1,53 +1,54 @@
 <?
-//Site name
-$sitename = "",
+//Site info
+$sitename = "Instant Wallet";
+$sitemail = "instawallet@somesite.com";
 
 // Donation account
 $don_account = "WalletDonations";
 
-// RPC Settings
+// RPC settings
 $btclogin = array(
 "username" =>   "",
-"password" => "",
+"password" =>   "",
 "host" =>       "localhost",
 "port" =>       "8332");
 
-// DB Settings
+// Database settings
 $sqlogin = array(
 "host" =>       "localhost",
 "dbname" =>     "",
 "username" =>   "",
 "password" =>   "");
 
-// short name for the coin used for.
-$coin = "BTC";
-$fullcoin = "bitcoin";
+// Coin symbol and name.
+$coin     = "LTC";
+$fullcoin = "litecoin";
 
 $redirect = "";
 
-// sending settings ..
-$minleft  = 0.001;                        // minimum left on account
-$minsend  = 0.001;                          // minimum allowed to send at a time
-$minconf = 1;                           // minimum confirmations
+// Outgoing transfers settings
+$minleft  = 0.001;     // minimum left on account
+$minsend  = 0.001;     // minimum allowed to send at a time
+$minconf  = 1;         // minimum confirmations
 
-// email
+// Email ??
 $mailUser = '';
 $mailPass = '';
 
-//captha
-$publickey = "";
+// Captha keys
+$publickey  = "";
 $privatekey = "";
 
-// maintenance mode
+// Maintenance mode
 $maintenance = FALSE;  // Change to TRUE to lockdown the site for all other then admins
 
-// admin ips 
+// Admin IPs 
 $adminips = array(
-		"other" => "127.0.0.1"
+  "other" => "127.0.0.1"
 );
 
-// NOT IMPLEMENTED YET ...
-$minfee   = 0;                          // min. hard fee on all transactions
-$feeperc  = 2.5;                        // fee for outgoing transactions in percentage
-$fee_account = "lal";  					// set to your own KEY to recieve fees there
+// NOT YET IMPLEMENTED
+$minfee      = 0;      // min. hard fee on all transactions
+$feeperc     = 2.5;    // fee for outgoing transactions in percentage
+$fee_account = "lal";  // set to your own KEY to recieve fees there
 ?>
