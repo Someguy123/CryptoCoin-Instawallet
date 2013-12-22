@@ -25,7 +25,7 @@ include('templates/header.php');
 
 <?
 echo '
-             <center><h3>Recent transactions</h3></center>
+             <center><h3>Recent transactions (by other users)</h3></center>
 
             <table class=\'table table-condensed table-bordered table-striped\'><tr><td>Confirms</td><td>Type</td><td>Amount</td><td>Fee</td></tr>';
               $dump = array_reverse($btclient->listtransactions());

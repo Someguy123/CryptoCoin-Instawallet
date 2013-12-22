@@ -114,7 +114,7 @@ if ($_GET ['key']) {
 		// readonly=readonly
 		// /></h4>";
 		if($loggedin == true) {
-			echo "<p><h2>Balance: " . formnum($addr->ltc->getbalance($_GET ['key'],$minconf)) . " (unconfirmed: " . formnum($addr->ltc->getbalance($_GET['key'],0)) ." ) </h2>
+			echo "<p><h2>Balance: " . formnum($addr->ltc->getbalance($_GET ['key'],$minconf)) . " (unconfirmed: " . formnum($addr->ltc->getbalance($_GET['key'],0) - $addr->ltc->getbalance($_GET ['key'],$minconf)) ." ) </h2>
 			<i style='font-size: 9px; padding-top:0px;margin-top:0px;'>Deposits are updated after {$minconf} confirmations, {$minleft} {$coin} is reserved for fees</i></p>";
 			?>
 			<div class='row'>

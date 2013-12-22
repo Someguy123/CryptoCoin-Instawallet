@@ -70,7 +70,7 @@ class Address
     }
   }
 
-  function sanitizedSend($to_address, $ltcaddr, $key, $amount, $minleft = 0.1, $minfee = 0, $feeperc = 2.5, $feeacc = "Fees")
+  function sanitizedSend($to_address, $ltcaddr, $key, $amount, $minleft = 0.001, $minfee = 0, $feeperc = 2.5, $feeacc = "Fees")
   {
     if (filter_var($amount, FILTER_VALIDATE_FLOAT))
     {
