@@ -5,118 +5,77 @@
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8">
-    <title>LiteCoin instaWallet!</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <!-- Le styles -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">      
-    <script src="js/bootstrap-alerts.js" /></script>
-    <style type="text/css">
-      /* Override some defaults */
-      html, body {
-        background-color: #eee;
-      }
-      body {
-        padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
-      }
-      .container > footer p {
-        text-align: center; /* center align it with the container */
-      }
-      .container {
-        width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
-      }
-
-      /* The white background content wrapper */
-      .container > .content {
-        background-color: #fff;
-        padding: 20px;
-        margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-        -webkit-border-radius: 0 0 6px 6px;
-           -moz-border-radius: 0 0 6px 6px;
-                border-radius: 0 0 6px 6px;
-        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-                box-shadow: 0 1px 2px rgba(0,0,0,.15);
-      }
-
-/* Page header tweaks */
-      .page-header {
-        background-color: #f5f5f5;
-        padding: 20px 20px 10px;
-        margin: -20px -20px 20px;
-      }
-
-      /* Styles you shouldn't keep as they are for displaying this base example only */
-      .content .span10,
-      .content .span4 {
-        min-height: 500px;
-      }
-      /* Give a quick and non-cross-browser friendly divider */
-      .content .span4 {
-        margin-left: 0;
-        padding-left: 19px;
-        border-left: 1px solid #eee;
-      }
-
-      .topbar .btn {
-        border: 0;
-      }
-
-    </style>
-
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="favicon.ico">
-  </head>
-  <body>
-    <div class="topbar">
-      <div class="fill">
-        <div class="container">
-          <a class="brand" href="/"><font style="font-size: 20px;">Litecoin Wallet</font><font style="font-size: 9px; "></font> </a>
-          <ul class="nav">
-          <?
-          // menu          
-          mnu_btn("index.php", "Home", "index.php");
-          
-
-          if (isset($_SESSION["key"]))
-          mnu_btn("vault?key=$_SESSION[key]", "My Vault");
-                    
-          foreach ($adminips as $allowed) {
-          	if ($_SERVER['REMOTE_ADDR'] == $allowed) {
-          		mnu_btn("server", "Server");
-          		break;
-          	}        		          	
-          }               
-          
-          if ($_SESSION["key"])
-          mnu_btn("logout", "Logout");
-
-         
-
-          ?>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Litecoin Instawallet</title>
+        <link rel="stylesheet" href="/assets/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/bootstrap-responsive.css">
+        <link rel="stylesheet" href="/assets/style.css">
+            <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="/js/html5shiv.js"></script>
+        <![endif]-->
+      <script src="/assets/jquery.min.js"></script>
+      <script src="/assets/jquery-migrate-1.1.1.min.js"></script>
+        <script src="/assets/bootstrap.min.js"></script>
+        <script>
+           function enableBeforeUnload() {
+                alert("Dev Mode Activated");
+                window.onbeforeunload = function (e) {
+                    return "Discard changes?";
+                };
+            }
+        </script>
+        <script src="/assets/main.js"></script>
+        <script type="text/javascript">
+         var RecaptchaOptions = {
+            theme : 'clean'
+         };
+         </script>
+</head>
+    <body>
+        <div class="wrapper">
+            <div class="navbar navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a class="brand">LTC.PE Instant Wallet<font size='4pt' style='color: red'> BETA </font></a>
+                                                <div class="nav-collapse">
+                            <ul class="nav">
+                                <?if (isset($_SESSION["key"])) mnu_btn("/key/$_SESSION[key]", "My Vault");?>
+                                <?
+                                // menu
+                                mnu_btn("/index", "Home");
+                                foreach ($adminips as $allowed) {
+                                  if ($_SERVER['REMOTE_ADDR'] == $allowed) {
+                                    mnu_btn("/server", "Server");
+                                    break;
+                                  }
+                                }
+                                if ($_SESSION["key"])
+                                mnu_btn("/logout", "Logout");
+                                mnu_btn("/about", "About Us");
+                                mnu_btn("/contact", "Contact Us");
+                                ?>
+                            </ul>
+<div class="pull-right" style="padding-top: 11px; font-size: 11px;">Blockcount: <?=number_format($derp["blocks"]);?> - <?=$derp["connections"]?> p2p nodes</div>
+                        </div>
+                      </div>
+                </div>
+            </div>
           </ul>
           <!--<form action="" class="pull-right">
           <input class="input-small" type="text" value="Switch key.." style="width: 150px;">
           </form>-->
-          <div class="pull-right" style="color: #fff; padding-top: 11px; font-size: 11px;">Blockcount: <?=number_format($derp["blocks"]);?> - <?=number_format($derp["balance"],0);?> LTC in <?=$wallets?> vaults at version <?=$derp[version]?> with <?=$derp["connections"]?> p2p nodes</div>
         </div>
       </div>
     </div>
     <div class="container">
-      <div class="content">
+      <div class="row-fluid">
       <!-- END HEADER.PHP -->
-      <?php 
-      if ($maintenance == true && !in_array($_SERVER['REMOTE_ADDR'], $adminips)) {      	
-      	include("./maintenance.php");      	
+      <?php
+      if ($maintenance == true && !in_array($_SERVER['REMOTE_ADDR'], $adminips)) {
+      	include("./maintenance.php");
       	include("footer.php");
       	die();
       }
