@@ -1,7 +1,7 @@
-      <?
-        include("core/wallet.php");
-        include('templates/header.php');
-      ?>
+<?
+  include("core/wallet.php");
+  include('templates/header.php');
+?>
       <div class="page-header">
         <h1>Welcome to the <?php echo $sitename ?></h1>
       </div>
@@ -42,7 +42,7 @@
           ?>
         </div>
       </div>
-      <?
-        include("templates/sidebar.php");
-        include('templates/footer.php');
-      ?>
+<?
+  include("templates/sidebar.php");
+  include('templates/footer.php');
+?>
