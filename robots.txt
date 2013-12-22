@@ -1,2 +1,8 @@
 User-agent: *
-Disallow: /
+Disallow:
+Disallow: /*key
+Disallow: /cgi-bin/
+Disallow: /key/
+Disallow: /getaddress.php
+Disallow: /getaddress
+
