@@ -20,6 +20,8 @@ CREATE TABLE IF NOT EXISTS `instaltc` (
   `ltcaddress` char(34) NOT NULL,
   `url` char(64) NOT NULL,
   `pin` char(64) NOT NULL,
+  `pass` varchar(128),
+  `has_pass` int(2),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=412 ;
 
