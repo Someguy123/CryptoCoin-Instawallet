@@ -17,10 +17,11 @@ class Address
   public $secret; // A salt we add for a nice secure URL
   public $securl; // Output URL string
   public $prepd;
+  public $minconf;
 
-  function __construct($btcclient, $sqllogin) {
+  function __construct($btcclient, $sqllogin, $minconf = 1) {
     $this->ltc = $btcclient;
-
+    $this->minconf = $minconf;
     try
     {
       $this->PDO_Conn = new PDO("mysql:host={$sqllogin['host']};dbname={$sqllogin['dbname']}", $sqllogin['username'], $sqllogin['password']);
@@ -74,7 +75,7 @@ class Address
     if (filter_var($amount, FILTER_VALIDATE_FLOAT))
     {
 
-      $balance = $this->ltc->getbalance("$key");
+      $balance = $this->ltc->getbalance("$key", $this->minconf);
       if($balance - $amount - $minleft <= 0) { throw new Exception('LOW_BALANCE'); }
 
       $valid = $this->ltc->validateaddress($to_address);
@@ -104,6 +105,56 @@ class Address
       throw new Exception("INVALID_AMT");
       $btclog = fopen("ltcerror.txt", 'a');
       fwrite($btclog, "[ {$ltcaddr} ] ENTERED {$amount}] - INVALID AMOUNT\r\n");
+    }
+  }
+  function checkPass($key, $pass = "") {
+    $stmt = $this->PDO_Conn->prepare('SELECT * FROM instaltc WHERE `url` = ?');
+    $stmt->execute(array($key));
+    $fetch = $stmt->fetchall();
+    if($fetch[0]['has_pass'] == 1) { 
+      if($fetch[0]['pass'] == $pass) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }
+  function hasPass($key) {
+    $stmt = $this->PDO_Conn->prepare('SELECT * FROM instaltc WHERE `url` = ?');
+    $stmt->execute(array($key));
+    $fetch = $stmt->fetchall();
+    if($fetch[0]['has_pass'] == 1) { 
+      return true;
+    } else {
+      return false;
+    }
+  }
+  function setPass($key, $pass, $oldpass = "") {
+    if(strlen($pass) < 4) {
+      throw new Exception("TOO_SHORT");
+      return false;
+    }
+    if(strlen($pass) > 32) {
+      throw new Exception("TOO_LONG");
+      return false;
+    }
+    if($this->haspass($key) === true AND $this->checkPass($key, $oldpass) === true) {
+      // They have a password, and they told us their old password correctly
+      $stmt = $this->PDO_Conn->prepare("UPDATE instaltc SET `pass`=? WHERE `url`=?");
+      $stmt->execute(array($pass, $key));
+      return true;
+    } elseif($this->hasPass($key) === false) {
+      // They don't have a password anyway
+      $stmt = $this->PDO_Conn->prepare("UPDATE instaltc SET `pass`=?, `has_pass`=1 WHERE `url`=?");
+      $stmt->execute(array($pass, $key));
+      return true;
+    } else {
+      // They didn't match either of those, so they probably entered their
+      // old password wrong.
+      throw new Exception("INV_PASSWORD");
+      return false;
     }
   }
 }
