@@ -2632,10 +2632,8 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 }
 .alert {
     padding: 8px 35px 8px 14px;
-    background-color: #D47500;
-    border: 1px solid #925200;
+    background: #933;
     margin: 0px auto 20px;
-    box-shadow: 0px 0px 14px -5px #000;
 }
 .alert, .alert h4 {
     color: #fff;

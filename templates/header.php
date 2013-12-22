@@ -1,5 +1,5 @@
-<!-- Add pre HTML functions, get rid of getaddress.php and retaddress.php, add session based anti-request-spam system. -->
 <!DOCTYPE html>
+<!-- Add pre HTML functions, get rid of getaddress.php and retaddress.php, add session based anti-request-spam system. -->
 <html><head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title><?php echo $sitename; ?></title>
@@ -31,8 +31,10 @@
           <a class="brand"><?php echo $sitename; ?></a>
           <div class="nav-collapse">
             <ul class="nav">
-              <?if (isset($_SESSION["key"])) mnu_btn("/key/$_SESSION[key]", "My Vault");?>
               <?php
+                if (isset($_SESSION["key"])) {
+                  mnu_btn("/key/$_SESSION[key]", "My Vault");
+                }
                 mnu_btn("/index", "Home");
                 foreach ($adminips as $allowed) {
                   if ($_SERVER['REMOTE_ADDR'] == $allowed) {
@@ -40,13 +42,14 @@
                     break;
                   }
                 }
-                if ($_SESSION["key"])
-                mnu_btn("/logout", "Logout");
-                mnu_btn("/about", "About Us");
-                mnu_btn("/contact", "Contact Us");
+                if ($_SESSION["key"]) {
+                  mnu_btn("/logout", "Logout");
+                  mnu_btn("/about", "About Us");
+                  mnu_btn("/contact", "Contact Us");
+                }
               ?>
             </ul>
-            <div class="pull-right" style="font-size:11px;padding-top:11px;"><?php echo $coin ?> blockcount: <?=number_format($derp["blocks"]);?> &mdash; P2P connections: <?=$derp["connections"]?></div>
+            <div class="pull-right" style="font-size:11px;padding-top:11px;"><?php echo $coin; ?> blockcount: <?php echo number_format($derp["blocks"]); ?> &mdash; P2P connections: <?php echo $derp["connections"]; ?></div>
           </div>
         </div>
       </div>

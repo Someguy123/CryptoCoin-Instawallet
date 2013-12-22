@@ -1,4 +1,4 @@
-<?
+<?php
 //Site info
 $sitename = "Instant Wallet";
 $sitemail = "instawallet@somesite.com";

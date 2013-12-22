@@ -1,4 +1,4 @@
-<? // Wallet
+<?php // Wallet
   session_start();
   include("functions.php");
 

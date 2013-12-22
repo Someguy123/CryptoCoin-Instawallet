@@ -1,8 +1,5 @@
-<?
-include("core/wallet.php");
-
-session_destroy();
-
-header("Location: /");
-
+<?php
+  include("core/wallet.php");
+  session_destroy();
+  header("Location: /");
 ?>

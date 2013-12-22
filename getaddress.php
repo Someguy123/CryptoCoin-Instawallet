@@ -1,4 +1,4 @@
-<?
+<?php
   include("core/wallet.php");
   $resp = recaptcha_check_answer ($privatekey,
   $_SERVER["REMOTE_ADDR"],

@@ -1,4 +1,4 @@
-<?
+<?php
   include("core/wallet.php");
   include('templates/header.php');
 ?>
@@ -7,19 +7,19 @@
       </div>
       <div class="row">
         <div class="span10">
-          <h3>Your versatile <strong><?=$fullcoin?> wallet</strong>&mdash;just a click away!</h3>
-          <? if (isset($_SESSION["key"])) { ?>
-          <a href='/key/<?=$_SESSION['key']?>'><button class="btn info"/>Return to my wallet</button></a>
-          <? } else { ?>
+          <h3>Your versatile <strong><?php echo $fullcoin; ?> wallet</strong>&mdash;just a click away!</h3>
+          <?php if (isset($_SESSION["key"])) { ?>
+          <a href='/key/<?php echo $_SESSION['key']; ?>'><button class="btn info">Return to my wallet</button></a>
+          <?php } else { ?>
           <form action="getaddress" method='post'>
             <input type="hidden" name="iwantaddress" value="true" />
-            <button class="btn danger"/>Make an address</button>
-            <? echo recaptcha_get_html($publickey, NULL, true); ?>
+            <button class="btn danger" style="margin-left:120px;">Generate a new address!</button>
+            <?php echo recaptcha_get_html($publickey, NULL, true); ?>
           </form>
-          <? } ?>
+          <?php } ?>
       
-          <?
-            echo '<center><h3>Recent site transactions</h3></center>
+          <?php
+            echo '<h3 style="text-align:center;">Recent site transactions</h3>
             <table class=\'table table-condensed table-bordered table-striped\'><tr><td>Confirms</td><td>Type</td><td>Amount</td><td>Fee</td></tr>';
               $dump = array_reverse($btclient->listtransactions());
               foreach ($dump as $herp) {
@@ -34,7 +34,7 @@
                   }
                   $herp["fee"] = $herp["fee"] * -1;
                   echo "<tr><td>" . $herp['confirmations'] . "</td><td>" . $herp['category'] .
-                  "</td><td><font color='{$color}'>" . formnum($herp['amount']) . "</font></td><td>" . ($herp['fee'] ?
+                  "</td><td style='color:{$color}'>" . formnum($herp['amount']) . "</td><td>" . ($herp['fee'] ?
                   $herp["fee"] : 0) . "</td></tr>";
                 }
               }
@@ -42,7 +42,7 @@
           ?>
         </div>
       </div>
-<?
+<?php
   include("templates/sidebar.php");
   include('templates/footer.php');
 ?>
