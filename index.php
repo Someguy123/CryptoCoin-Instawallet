@@ -7,27 +7,18 @@ include('templates/header.php');
 
 
         <div class="page-header">
-          <h1>LTC instawallet <small>In progress...</small></h1>
+          <h1>Welcome to LTC.PE's Instant Wallet</h1>
         </div>
         <div class="row">
           <div class="span10">
-
-            <?
-            echo srsnot("The LTC InstaaWallet is currently under development, I am not responsible for any lost litecoins, failed transactions, or lost addresses. save your vault link and dont share it");
-
-            if (isset($_SESSION["key"])) {
-          ?>
-          <form action="vault">
-            <input type="hidden" name="key" value="<?=$_SESSION["key"]?>" />
-            <button class="btn notice"/>Return to my wallet</button>
-            </form>
-          <?
-            }
-            else {
-            ?>
-            <form action="getaddress.php">
+            <h3>Your versatile <?=$fullcoin?> <b>LTC.PE Wallet</b> just a click away [BETA!]</h3>
+            <? if (isset($_SESSION["key"])) { ?>
+            <a href='/key/<?=$_SESSION['key']?>'><button class="btn info"/>Return to my wallet</button></a>
+          <? } else { ?>
+            <form action="getaddress" method='post'>
             <input type="hidden" name="iwantaddress" value="true" />
-            <button class="btn danger"/>I don't care, just give me an address!</button>
+            <button class="btn danger"/>Make an address</button>
+            <? echo recaptcha_get_html($publickey, NULL, true); ?>
             </form>
             <? } ?>
 
@@ -36,7 +27,7 @@ include('templates/header.php');
 echo '
              <center><h3>Recent transactions</h3></center>
 
-            <table class=\'bordered-table condensed-table zebra-striped\'><tr><td>Confirms</td><td>Type</td><td>Amount</td><td>Fee</td></tr>';
+            <table class=\'table table-condensed table-bordered table-striped\'><tr><td>Confirms</td><td>Type</td><td>Amount</td><td>Fee</td></tr>';
               $dump = array_reverse($btclient->listtransactions());
 
 
@@ -46,17 +37,17 @@ echo '
            	foreach ($dump as $herp) {
            		if ($herp['category'] != "move") {
            			if ($herp['category'] == "send") {
-           				$herp['category'] = '<span class="label important">'.$herp['category'].'</span>';
-           				$herp['amount'] = $herp['amount'] * -1;
+           				$herp['category'] = '<span class="label label-important">'.$herp['category'].'</span>';
+           				$herp['amount'] = (float) $herp['amount'] * -1;
            				
            				$color = "maroon";
            			} else {
-           				$herp['category'] = '<span class="label success">'.$herp['category'].'</span>';
+           				$herp['category'] = '<span class="label label-success">'.$herp['category'].'</span>';
            				$color = "green";
            			}
            			$herp["fee"] = $herp["fee"] * -1;
            			echo "<tr><td>" . $herp['confirmations'] . "</td><td>" . $herp['category'] .
-           			"</td><td><font color='{$color}'>" . $herp['amount'] . "</font></td><td>" . ($herp['fee'] ?
+           			"</td><td><font color='{$color}'>" . formnum($herp['amount']) . "</font></td><td>" . ($herp['fee'] ?
            					$herp["fee"] : 0) . "</td></tr>";
            		}
            	}
@@ -67,7 +58,7 @@ echo '
               echo "</table>";
 ?>
           </div>
-
+</div>
 
 <?
 include("templates/sidebar.php");
