@@ -1,7 +1,7 @@
 <div class="page-header">
-			<h2 align="center"><small>Server temporarily closed for security testing or Server/Site updateing!</small></h2>
-		</div>
-      	<div class="row">
-			<div class="span10">
-				&nbsp;
-      		</div>
+  <h2 style="text-align:center;"><small>The server is temporarily closed for server upgrades, site updates, or security testing!</small></h2>
+</div>
+<div class="row">
+  <div class="span10">
+    &nbsp;
+  </div>
