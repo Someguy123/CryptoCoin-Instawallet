@@ -1,2 +1,2 @@
-.gitignore
-config.php
+/core/config.php
+/sitemap.xml
