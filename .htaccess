@@ -1,0 +1,11 @@
+Options +FollowSymlinks
+RewriteEngine On
+RewriteRule ^key/([^/.]+)/?$ my.php?key=$1 [L]
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^(.+)\.php([#?][^\ ]*)?\ HTTP/
+RewriteRule ^(.+)\.php$ http://wallet.ltc.pe/$1 [R=301,L]
+
+RewriteRule ^([^/.]+)$ $1.php [L]
+

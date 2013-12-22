@@ -4,33 +4,43 @@ $don_account = "WalletDonations";
 
 // RPC Settings
 $btclogin = array(
-"username" =>   "user",
-"password" =>   "pass",
+"username" =>   "",
+"password" => "",
 "host" =>       "localhost",
-"port" =>       "9332");
+"port" =>       "8332");
 
 // DB Settings
 $sqlogin = array(
 "host" =>       "localhost",
-"dbname" =>     "wallet",
-"username" =>   "user",
-"password" =>   "pass");
+"dbname" =>     "",
+"username" =>   "",
+"password" =>   "");
+
+// short name for the coin used for.
+$coin = "BTC";
+$fullcoin = "bitcoin";
+
+$redirect = "";
 
 // sending settings ..
-$minleft  = 0.1;                        // minimum left on account
-$minsend  = 1;                          // minimum allowed to send at a time
+$minleft  = 0.001;                        // minimum left on account
+$minsend  = 0.001;                          // minimum allowed to send at a time
+$minconf = 1;                           // minimum confirmations
+
+// email
+$mailUser = '';
+$mailPass = '';
 
 //captha
-$publickey = "PubKey";
-$privatekey = "PriVKeY";
+$publickey = "";
+$privatekey = "";
 
 // maintenance mode
 $maintenance = FALSE;  // Change to TRUE to lockdown the site for all other then admins
 
 // admin ips 
 $adminips = array(
-		"g2x3k" => "87.58.119.133",		
-		"other" => "someip"
+		"other" => "127.0.0.1"
 );
 
 // NOT IMPLEMENTED YET ...

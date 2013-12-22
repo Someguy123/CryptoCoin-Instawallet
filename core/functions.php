@@ -16,9 +16,13 @@ function timer() {
 }
 
 function srsnot($srserror) {
-	return '          <div class="alert-message alert" data-alert="alert" style="margin-right: 20px;"><p>' . $srserror . '</p></div>';
+	return '          <div class="alert-message alert" data-alert="alert"><p>' . $srserror . '</p></div>';
 }
 function srserr($srserror) {
-	return '          <div class="alert-message error" data-alert="alert" style="margin-right: 20px;"><p>' . $srserror . '</p></div>';
+	return '          <div class="alert-message alert-error" data-alert="alert" style="margin-right: 20px;"><p>' . $srserror . '</p></div>';
+}
+function formnum($num) {
+	$num = number_format($num, 8);
+	return rtrim(rtrim($num, "0"),".");
 }
 ?>
