@@ -99,8 +99,8 @@
               }
               // echo "<h4>Address: <input type='text' value='{$ltcaddr}' style='width:260px;text-align:center;' readonly='readonly' /></h4>";
               if($loggedin == true) {
-                echo "<h2>Balance: " . formnum($addr->ltc->getbalance($_GET ['key'],$minconf)) . " (unconfirmed: " . formnum($addr->ltc->getbalance($_GET['key'],0)) .")</h2>
-                <p><em style='font-size:13px;'>Deposits are updated after {$minconf} confirmations, {$minleft} {$coin} is reserved for fees.</em><p>";
+                echo "<h2>Balance: " . formnum($addr->ltc->getbalance($_GET ['key'],$minconf)) . " (unconfirmed: " . formnum($addr->ltc->getbalance($_GET['key'],0) - $addr->ltc->getbalance($_GET ['key'],$minconf)) .")</h2>
+                <p><em style='font-size:13px;'>Deposits are updated after {$minconf} confirmations; {$minleft} {$coin} is reserved for fees.</em><p>";
               ?>
       
                 <div class='row'>
