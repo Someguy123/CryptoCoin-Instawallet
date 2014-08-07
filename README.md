@@ -1,6 +1,6 @@
 Cryptocoin Instawallet (inc. Litecoin and Bitcoin support)
 ====================
-This PHP web application is designed to allow users to instantly obtain a wallet for any cryptocurreny (Litecoin, Bitcoin, etc) without having to sign up for an account or download a client or large blockchain. It also provides users the ability to password their wallets for added security against key leakage.
+This free-to-use PHP web application is designed to allow users to instantly obtain a wallet for any cryptocurreny (Litecoin, Bitcoin, etc) without having to sign up for an account or download a client or large blockchain. It also provides users the ability to password their wallets for added security against key leakage.
 
 People running these wallets should be aware of the security risks involved, as it depends on the security of the cryptocoin daemon running on the server. There is NO COLD WALLET facility, although you may be able to move coins off of a daemon using `sendto` within the daemon's RPC without affecting other accounts.
 
