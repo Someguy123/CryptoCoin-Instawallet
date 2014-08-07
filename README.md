@@ -8,7 +8,7 @@ It is currently used at the newly released [LTC.PE Litecoin Instawallet](http://
 
 License
 =======
-**IMPORTANT:** This is released under the GNU Affero GPL License v3 (please read LICENSE which is included in this git repository). This means that you **MUST** release any modifications you make if any other user can access it. Included in the footer, by default, is a link to my GitHub page. All modifications should be submitted as a pull request, where possible.
+**IMPORTANT:** This is released under the GNU Affero GPL License v3 (please read [LICENSE](LICENSE) which is included in this git repository). This means that you **MUST** release any modifications you make if any other user can access it. Included in the footer, by default, is a link to my GitHub page. All modifications should be submitted as a pull request, where possible.
 
 How to use
 ==========
